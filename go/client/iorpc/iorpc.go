@@ -112,14 +112,13 @@ func main() {
 						if mode == modeRandomOffset {
 							req.Headers = &iorpcbench.ReadHeaders{
 								Size:   128 * 1024,
-								Offset: rand.Uint64() % (60 * 1024 * 1024 * 1024),
+								Offset: rand.Uint64() % (1024*1024*1024 - 128*1024),
 							}
 						}
 
 						if mode == modeReadMemory {
 							req.Service = iorpcbench.ServiceReadMemory
 						}
-
 						_, err := client.CallTimeout(req, time.Hour)
 						if err != nil {
 							return err
@@ -130,7 +129,9 @@ func main() {
 		}
 	}
 
+	log.Printf("work started, sleep %ds\n", duration/time.Second)
 	time.Sleep(duration)
+	log.Println("sleep done")
 
 	stats := make([]*iorpc.ConnStats, 0, len(clients))
 	for _, client := range clients {

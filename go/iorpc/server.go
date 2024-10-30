@@ -5,6 +5,7 @@ import (
 	"errors"
 	"io"
 	"os"
+	"time"
 
 	"github.com/hexilee/iorpc"
 )
@@ -66,6 +67,11 @@ func init() {
 				size = uint64(fileSize) - offset
 			}
 
+			// make sure we don't touch EOF
+			_, err := dataFile.Seek(0, io.SeekStart)
+			if err != nil {
+				panic(err)
+			}
 			return &iorpc.Response{
 				Body: iorpc.Body{
 					Offset:   offset,
@@ -121,7 +127,8 @@ func ListenAndServe(addr string) error {
 	// Start rpc server serving registered service.
 	s := &iorpc.Server{
 		// Accept clients on this TCP address.
-		Addr: addr,
+		Addr:       addr,
+		FlushDelay: time.Microsecond * 10,
 
 		// Echo handler - just return back the message we received from the client
 		Handler: Dispatcher.HandlerFunc(),

@@ -29,8 +29,7 @@ bench-tcp:
 	cd go/client/tcp && TIME=$(TIME) WORKERS=$$(( $(WORKERS) / 4 + 1 )) TCP_PORT=$(TCP_PORT) go run .
 
 bench-iorpc:
-	cd go/client/iorpc && TIME=$(TIME) WORKERS=$$(( $(WORKERS) / 4 + 1 )) SESSIONS=$(SESSIONS) IORPC_PORT=$(IORPC_PORT) go run .
-
+	cd go/client/iorpc && go build -o iorpc && TIME=$(TIME) WORKERS=$$(( $(WORKERS) / 4 + 1 )) SESSIONS=$(SESSIONS) IORPC_PORT=$(IORPC_PORT) ./iorpc
 bench-memory:
 	cd go/client/memory && TIME=$(TIME) WORKERS=$$(( $(WORKERS) / 4 + 1 )) RANDOM=$(RANDOM) go run .
 
@@ -38,7 +37,7 @@ run-rust-server: ensure-bigdata
 	cargo run $(CARGO_DEV_OPTIONS) --release
 
 run-go-server: ensure-bigdata ensure-cert
-	cd go && GOMAXPROCS=$(GOMAXPROCS) MOCK_BANDWIDTH=$(MOCK_BANDWIDTH) MOCK_LATENCY=$(MOCK_LATENCY) go run .
+	cd go && go build -o server && GOMAXPROCS=$(GOMAXPROCS) MOCK_BANDWIDTH=$(MOCK_BANDWIDTH) MOCK_LATENCY=$(MOCK_LATENCY) ./server
 
 clean: clean-rust
 	rm -rf $(OUTPUT_DIR)
@@ -92,5 +91,5 @@ ensure-cert: ensure-output
 	if [ ! -f $(OUTPUT_DIR)/server.key ]; then openssl req -newkey rsa:2048 -nodes -keyout $(OUTPUT_DIR)/server.key -x509 -days 365 -out $(OUTPUT_DIR)/server.crt; fi
 
 ensure-bigdata: ensure-data
-	if [ ! -f $(DATA_TMP_DIR)/bigdata ]; then dd if=/dev/urandom of=$(DATA_TMP_DIR)/bigdata bs=64M count=1024; fi
+	if [ ! -f $(DATA_TMP_DIR)/bigdata ]; then dd if=/dev/urandom of=$(DATA_TMP_DIR)/bigdata bs=1M count=1024; fi
 
