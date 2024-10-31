@@ -21,4 +21,4 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 )
 
-replace github.com/hexilee/iorpc v0.0.0-20221030172936-ad52e44ff86e => github.com/winglq/iorpc v0.0.0-20241031025143-df0cab627377
+replace github.com/hexilee/iorpc v0.0.0-20221030172936-ad52e44ff86e => github.com/winglq/iorpc v0.0.0-20241031081100-1cf621e6c358

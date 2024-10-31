@@ -31,8 +31,8 @@ github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyC
 github.com/valyala/fasthttp v1.40.0 h1:CRq/00MfruPGFLTQKY8b+8SfdK60TxNztjRMnH0t1Yc=
 github.com/valyala/fasthttp v1.40.0/go.mod h1:t/G+3rLek+CyY9bnIE+YlMRddxVAAGjhxndDB4i4C0I=
 github.com/valyala/tcplisten v1.0.0/go.mod h1:T0xQ8SeCZGxckz9qRXTfG43PvQ/mcWh7FwZEA7Ioqkc=
-github.com/winglq/iorpc v0.0.0-20241031025143-df0cab627377 h1:+JzsXd3uLJa+ysS4+zhD0rbSbmAhS6d1HVwS5XPXo5I=
-github.com/winglq/iorpc v0.0.0-20241031025143-df0cab627377/go.mod h1:q9ANe2AZt7B2K9G4MJ608++IL0/okMz1cBlhIpc4Shk=
+github.com/winglq/iorpc v0.0.0-20241031081100-1cf621e6c358 h1:PL5AsE1vvZj9ndIAnLHi1H2Zaho/yaaFNS94BW2M0RM=
+github.com/winglq/iorpc v0.0.0-20241031081100-1cf621e6c358/go.mod h1:q9ANe2AZt7B2K9G4MJ608++IL0/okMz1cBlhIpc4Shk=
 golang.org/x/crypto v0.0.0-20220214200702-86341886e292/go.mod h1:IxCIyHEi3zRg3s0A5j5BB6A9Jmi73HwBIUl50j+osU4=
 golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
 golang.org/x/net v0.0.0-20220225172249-27dd8689420f/go.mod h1:CfG3xpIq0wQ8r1q4Su4UZFWDARRcnwPjda9FqA0JpMk=
