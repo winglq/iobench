@@ -20,14 +20,22 @@ var (
 type StaticBuffer []byte
 type ReadHeaders struct {
 	Offset, Size uint64
+	encodeBuf    [16]byte
 }
 
-func (h *ReadHeaders) Encode(w io.Writer) error {
-	return binary.Write(w, binary.BigEndian, *h)
+func (h *ReadHeaders) Encode(w io.Writer) (int, error) {
+	binary.BigEndian.PutUint64(h.encodeBuf[0:8], h.Offset)
+	binary.BigEndian.PutUint64(h.encodeBuf[8:16], h.Size)
+	return w.Write(h.encodeBuf[:])
 }
 
-func (h *ReadHeaders) Decode(r io.Reader) error {
-	return binary.Read(r, binary.BigEndian, h)
+func (h *ReadHeaders) Decode(b []byte) error {
+	if len(b) != 16 {
+		panic("")
+	}
+	h.Offset = binary.BigEndian.Uint64(b[0:8])
+	h.Size = binary.BigEndian.Uint64(b[8:16])
+	return nil
 }
 
 var (
