@@ -42,10 +42,10 @@ func main() {
 	go func() {
 		h2s := &http2.Server{}
 		server := http.Server{
-			Addr:    ":8002",
+			Addr:    ":6061",
 			Handler: h2c.NewHandler(mux, h2s),
 		}
-		fmt.Println("Starting h2c server on :8002...")
+		fmt.Println("Starting h2c server on :6061...")
 		if err := server.ListenAndServe(); err != nil {
 			log.Fatalf("Error in h2c ListenAndServe: %v", err)
 		}

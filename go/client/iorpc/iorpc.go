@@ -73,7 +73,7 @@ func init() {
 func main() {
 	// run pprof server on
 	go func() {
-		log.Println(http.ListenAndServe("localhost:8888", nil))
+		log.Println(http.ListenAndServe("localhost:6060", nil))
 	}()
 	fmt.Printf("Dialing server :%d with %d x workers(%d) sessions...\n", port, sessions, workers)
 	clients := make([]*iorpc.Client, 0, workers)
